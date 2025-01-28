@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Navigation</title>
+    <style>
+        .animatedNavigationNav {
+            font-family: "Arial", sans-serif;
+            background: #1A1622;
+        }
+
+        .animatedNavigationUl {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 24px 0;
+            margin: 0;
+        }
+
+        .animatedNavigationLink {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            position: relative;
+        }
+
+        .animatedNavigationLink::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #fff;
+            transition: height 1s ease, width 0.5s ease;
+        }
+
+        .animatedNavigationLink:hover::before {
+            animation: navHover 1s forwards;
+        }
+
+        @keyframes navHover {
+            0% {
+                width: 0%;
+            }
+
+            50% {
+                width: 100%;
+                height: 2px;
+            }
+
+            100% {
+                width: 100%;
+                background: #fff;
+            }
+        }
+
+        .animatedNavigationLink.clicked::before {
+            width: 100%;
+            height: 2px;
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="animatedNavigationNav">
+        <ul class="animatedNavigationUl">
+            <li>
+                <a class="animatedNavigationLink" href="#">Link1</a>
+            </li>
+            <li>
+                <a class="animatedNavigationLink" href="#">Link2</a>
+            </li>
+            <li>
+                <a class="animatedNavigationLink" href="#">Link3</a>
+            </li>
+        </ul>
+    </nav>
+    </div>
+    <script>
+        document.querySelectorAll('.animatedNavigationLink').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                document.querySelectorAll('.animatedNavigationLink').forEach((otherLink) => {
+                    otherLink.classList.remove('clicked');
+                });
+
+                link.classList.add('clicked');
+            });
+        });
+    </script>
+</body>
+
+</html>
